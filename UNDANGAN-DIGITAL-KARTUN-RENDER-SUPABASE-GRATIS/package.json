@@ -1,0 +1,11 @@
+{
+  "name": "undangan-kartun-online",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Undangan kartun dengan panel admin, data permanen Supabase, deploy gratis Render",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.js && node test/supabase-mock.js"
+  },
+  "engines": {"node": ">=20"}
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#244338">
+  <title>Panel Admin · Undangan Kartun Studio</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin.css">
+  <script src="/admin.js" defer></script>
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="brand-symbol">❦</div>
+      <div class="eyebrow">Wedding Invitation Studio</div>
+      <h1>Halo, Admin <span>♡</span></h1>
+      <p>Masuk untuk mengatur undangan, melihat konfirmasi kehadiran, dan membaca ucapan tamu.</p>
+      <form id="loginForm" class="form-stack">
+        <label for="password">Password Admin</label>
+        <input id="password" type="password" placeholder="Masukkan password admin" minlength="8" required autocomplete="current-password">
+        <label class="check-label"><input type="checkbox" id="remember"> Ingat saya selama 30 hari</label>
+        <button class="btn primary full" type="submit" id="loginButton">Masuk ke Panel →</button>
+        <div id="loginStatus" class="status" role="status"></div>
+      </form>
+      <small>Password awal ditampilkan di terminal saat server pertama kali dijalankan atau dapat diatur melalui <code>ADMIN_PASSWORD</code>.</small>
+      <a href="/" class="back-link">← Lihat undangan</a>
+    </div>
+  </div>
+  <div id="dashboard" class="dashboard" hidden>
+    <aside class="sidebar">
+      <div class="side-brand"><span class="brand-icon">❦</span><div><strong>Kartun Studio</strong><small>Wedding Invitation</small></div></div>
+      <div class="side-caption">MENU PANEL</div>
+      <nav class="side-nav" id="navigation">
+        <button type="button" data-tab="overview" class="active">⌂ <span>Ringkasan</span></button>
+        <button type="button" data-tab="editor">✎ <span>Edit Undangan</span></button>
+        <button type="button" data-tab="guests">♡ <span>Daftar RSVP</span></button>
+        <button type="button" data-tab="wishes">✉ <span>Ucapan Tamu</span></button>
+        <button type="button" data-tab="share">↗ <span>Link Undangan</span></button>
+      </nav>
+      <div class="sidebar-bottom"><a href="/" target="_blank" rel="noopener">↗ Lihat Tampilan Tamu</a><button id="logoutBtn" type="button">⇥ Keluar</button></div>
+    </aside>
+    <main class="main-column">
+      <header class="topbar"><div><div class="eyebrow">CONTROL PANEL</div><h1 id="screenTitle">Ringkasan</h1></div><div class="top-right"><span class="publish-pill" id="publishPill">● Draft</span><button type="button" class="btn neutral small" id="previewTop">↗ Preview</button></div></header>
+      <div id="globalStatus" class="toast" role="status" hidden></div>
+      <section class="tab-content" id="tab-overview">
+        <div class="welcome card"><div><div class="eyebrow">SELAMAT DATANG</div><h2>Undangan Impian, Tinggal Isi ✦</h2><p>Isi data kedua mempelai dan acara, atur desain, lalu terbitkan undangan. Setelah online, satu tautan bisa langsung dikirim lewat WhatsApp.</p><div class="action-row"><button type="button" class="btn primary" data-open-tab="editor">✎ Mulai Edit Undangan</button><button type="button" class="btn light" data-open-tab="share">↗ Buat Link Tamu</button></div></div><div class="welcome-art">♡<small>Our Wedding</small></div></div>
+        <div class="stats"><div class="card stat"><small>Konfirmasi Masuk</small><strong id="statRsvp">0</strong><span>Pengisi formulir</span></div><div class="card stat"><small>Akan Hadir</small><strong id="statHadir">0</strong><span>Perkiraan jumlah orang</span></div><div class="card stat"><small>Ucapan & Doa</small><strong id="statWishes">0</strong><span>Ucapan terkirim</span></div></div>
+        <div class="card summary-card"><h3>Informasi Undangan</h3><div class="summary-row"><span>Nama Pasangan</span><strong id="sumNames">—</strong></div><div class="summary-row"><span>Hari Resepsi</span><strong id="sumDate">—</strong></div><div class="summary-row"><span>Tempat</span><strong id="sumVenue">—</strong></div><div class="summary-row"><span>Status</span><strong id="sumStatus">Draft</strong></div></div>
+      </section>
+      <section class="tab-content" id="tab-editor" hidden>
+        <div class="page-intro"><p>Ganti nama, tanggal, ilustrasi, warna, dan detail lainnya di sini. Simpan dulu sebagai draft atau langsung terbitkan.</p></div>
+        <form id="editorForm">
+          <div class="card form-card"><div class="section-heading"><span class="step">01</span><div><h2>Nama Kedua Mempelai</h2><p>Ditampilkan di halaman awal dan bagian utama.</p></div></div><div class="form-grid"><label>Nama Mempelai Wanita <em>*</em><input required name="bride" maxlength="130" placeholder="Nadia Putri"></label><label>Nama Mempelai Pria <em>*</em><input required name="groom" maxlength="130" placeholder="Arga Pratama"></label><label>Orang Tua Mempelai Wanita<input name="brideParents" maxlength="130"></label><label>Orang Tua Mempelai Pria<input name="groomParents" maxlength="130"></label></div></div>
+          <div class="card form-card"><div class="section-heading"><span class="step">02</span><div><h2>Waktu & Lokasi Acara</h2><p>Atur tanggal, jam akad dan resepsi, serta peta acara.</p></div></div><div class="form-grid"><label>Tanggal Akad <em>*</em><input type="date" required name="akadDate"></label><label>Jam Akad <em>*</em><input type="time" required name="akadTime"></label><label>Keterangan Selesai Akad<input name="akadEnd" placeholder="Selesai / 10.00"></label><label>Tanggal Resepsi <em>*</em><input type="date" required name="receptionDate"></label><label>Jam Resepsi <em>*</em><input type="time" required name="receptionTime"></label><label>Keterangan Selesai Resepsi<input name="receptionEnd" placeholder="Selesai"></label><label>Zona Waktu<select name="timezone"><option value="Asia/Jakarta">WIB</option><option value="Asia/Makassar">WITA</option><option value="Asia/Jayapura">WIT</option></select></label><label>Nama Gedung / Tempat <em>*</em><input name="venue" required placeholder="Gedung Serbaguna"></label><label class="wide">Alamat Lengkap <em>*</em><textarea name="address" rows="2" maxlength="500" required placeholder="Jl. Nama Jalan No. ..."></textarea></label><label class="wide">Link Google Maps<input name="mapsUrl" type="url" placeholder="https://maps.google.com/..."><small>Buka Google Maps lalu salin tautan lokasi; boleh dikosongkan agar lokasi dicari berdasarkan alamat.</small></label></div></div>
+          <div class="card form-card"><div class="section-heading"><span class="step">03</span><div><h2>Tampilan & Foto Kartun</h2><p>Foto kartun bawaan dari file kamu sudah dipasang. Bisa diganti kapan saja.</p></div></div>
+            <div class="form-grid"><label>Tema Warna<select name="theme"><option value="sage">🌿 Sage Green</option><option value="rose">🌸 Dusty Rose</option><option value="navy">🌙 Navy Blue</option><option value="maroon">🍷 Maroon</option><option value="sand">✨ Sand Beige</option></select></label><label>Link Gambar Utama<input id="heroImageUrl" name="heroImage" placeholder="/assets/pasangan-kartun.webp"></label></div>
+            <div class="asset-row"><img class="asset-preview" id="heroPreview" src="/assets/pasangan-kartun.webp" alt="Preview gambar kartun pasangan"><div class="asset-action"><strong>Foto Utama</strong><p>Pilih file JPG, PNG, atau WEBP maks. 5 MB.</p><label class="btn light file-label" for="heroUpload">↑ Pilih & Upload Foto</label><input id="heroUpload" type="file" accept="image/jpeg,image/png,image/webp" hidden><span id="heroUploadStatus" class="muted"></span></div></div>
+            <div class="divider"></div><h3>Galeri Foto</h3><p class="hint">Maksimal 6 foto, tambahkan satu per satu. Bisa dikosongkan.</p><div class="gallery-admin" id="galleryPreview"></div><label class="btn light file-label" for="galleryUpload">＋ Tambah Foto Galeri</label><input id="galleryUpload" type="file" accept="image/jpeg,image/png,image/webp" hidden><span id="galleryUploadStatus" class="muted"></span>
+            <div class="divider"></div><h3>Musik Latar</h3><p class="hint">Musik mulai diputar setelah tamu menekan tombol buka undangan (jika diizinkan browser).</p><div class="form-grid"><label class="wide">Link MP3<input name="musicUrl" id="musicUrl" placeholder="Kosongkan jika tanpa musik"></label></div><div class="action-row"><label class="btn light file-label" for="musicUpload">♫ Upload MP3</label><input id="musicUpload" type="file" accept="audio/mpeg,.mp3" hidden><button class="btn text-btn" type="button" id="clearMusic">Hapus Musik</button></div><p id="musicUploadStatus" class="muted"></p>
+          </div>
+          <div class="card form-card"><div class="section-heading"><span class="step">04</span><div><h2>Ucapan & Cerita</h2><p>Teks sambutan, kutipan, dan kisah romantis.</p></div></div><div class="form-grid"><label class="wide">Kalimat Pembuka<textarea name="greeting" rows="3" maxlength="700"></textarea></label><label class="wide">Kutipan Pernikahan<textarea name="quote" rows="3" maxlength="500"></textarea></label><label>Sumber Kutipan<input name="quoteSource" maxlength="130"></label><label>Judul Kisah<input name="storyTitle" maxlength="130"></label><label class="wide">Cerita Kami<textarea name="storyText" rows="4" maxlength="1700" placeholder="Cerita awal bertemu, lamaran, atau perjalanan cinta..."></textarea></label></div></div>
+          <div class="card form-card"><div class="section-heading"><span class="step">05</span><div><h2>Hadiah Pernikahan (Opsional)</h2><p>Bagian ini otomatis disembunyikan kalau tidak diisi.</p></div></div><div class="form-grid"><label>Nama Bank<input name="giftBank"></label><label>Nomor Rekening<input name="giftAccount"></label><label class="wide">Atas Nama<input name="giftName"></label><label class="wide">Alamat Kirim Hadiah<textarea rows="2" name="giftAddress"></textarea></label></div></div>
+          <div class="card action-card"><div><strong>Siap untuk dibagikan?</strong><p>Perubahan disimpan ke server. Tautan undangan tidak perlu diganti saat kamu mengedit data.</p></div><div class="action-row"><button type="submit" id="saveDraftBtn" class="btn light" data-publish="false">Simpan Draft</button><button type="submit" id="publishBtn" class="btn primary" data-publish="true">✓ Simpan & Terbitkan</button></div></div>
+        </form>
+      </section>
+      <section class="tab-content" id="tab-guests" hidden><div class="card table-card"><div class="section-heading"><div><h2>Konfirmasi Kehadiran</h2><p>Data tamu yang sudah mengisi RSVP.</p></div><a class="btn light small" href="/api/admin/export?kind=rsvps" download>↓ Download CSV</a></div><div class="table-wrap"><table><thead><tr><th>Nama</th><th>Kehadiran</th><th>Jumlah</th><th>Waktu</th></tr></thead><tbody id="rsvpRows"></tbody></table></div></div></section>
+      <section class="tab-content" id="tab-wishes" hidden><div class="card table-card"><div class="section-heading"><div><h2>Ucapan & Doa Tamu</h2><p>Ucapan disimpan di server dan dapat dihapus oleh admin.</p></div><a class="btn light small" href="/api/admin/export?kind=wishes" download>↓ Download CSV</a></div><div class="wishes-admin" id="wishesRows"></div></div></section>
+      <section class="tab-content" id="tab-share" hidden><div class="card share-card"><div class="eyebrow">LINK UNDANGAN</div><h2>Satu Link untuk Semua Tamu</h2><p>Setelah diunggah ke hosting online, bagikan alamat undangan ini ke keluarga dan sahabat. Tambahkan nama tamu agar salam pembuka menjadi personal.</p><div class="share-link"><input id="publicLink" readonly aria-label="Link undangan"><button type="button" id="copyPublic" class="btn primary">Salin</button></div><div class="divider"></div><label>Nama Penerima (Opsional)<input id="guestTarget" placeholder="Contoh: Bapak Andi dan Keluarga" maxlength="100"></label><div class="share-link"><input id="personalLink" readonly aria-label="Link undangan untuk tamu"><button type="button" id="copyPersonal" class="btn primary">Salin</button></div><div class="action-row"><button class="btn light" id="whatsappShare" type="button">↗ Kirim lewat WhatsApp</button><button class="btn light" type="button" id="openPublic">↗ Buka Link</button></div><p class="hint">Penting: link <code>localhost</code> hanya dapat dibuka di komputer yang menjalankan server. Untuk tamu di luar, deploy ke hosting Node.js dan gunakan domain/URL publik.</p></div></section>
+      <footer class="dashboard-footer">Kartun Wedding Studio ♡ · Panel administrasi undangan</footer>
+    </main>
+  </div>
+</body>
+</html>

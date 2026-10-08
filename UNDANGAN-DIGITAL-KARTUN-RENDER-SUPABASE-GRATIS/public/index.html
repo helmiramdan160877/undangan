@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#506b55">
+  <meta name="description" content="Undangan pernikahan digital. Kami mengundang Anda berbagi kebahagiaan di hari istimewa kami.">
+  <title>The Wedding | Undangan Digital</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body class="invitation-body" data-theme="sage">
+  <div class="cover-screen" id="cover" role="dialog" aria-modal="true" aria-labelledby="coverTitle">
+    <div class="cover-picture" id="coverImage" aria-hidden="true"></div>
+    <div class="cover-content">
+      <span class="ornament">✦ &nbsp; ❦ &nbsp; ✦</span>
+      <p class="eyebrow">The Wedding Of</p>
+      <h1 class="script-names" id="coverTitle">Arga <span>&amp;</span> Nadia</h1>
+      <div class="thin-line"></div>
+      <p class="small-label">Kepada Yth.</p>
+      <p class="guest-name" id="guestName">Bapak/Ibu/Saudara/i</p>
+      <p class="small-help">Mohon maaf apabila ada kesalahan penulisan nama atau gelar.</p>
+      <button type="button" id="openInvitation" class="btn primary">✉ &nbsp; Buka Undangan</button>
+    </div>
+  </div>
+
+  <main class="invite-page" id="main">
+    <div class="draft-banner" id="draftBanner" hidden>Mode contoh • Undangan belum dipublikasikan oleh admin.</div>
+    <header id="beranda" class="hero-section">
+      <div class="hero-visual"><img id="heroImage" src="/assets/pasangan-kartun.webp" alt="Ilustrasi kartun pasangan pengantin"></div>
+      <div class="hero-type"><p class="eyebrow">The Wedding Of</p><h1 class="script-names" id="heroNames">Arga <span>&amp;</span> Nadia</h1><p id="heroDay" class="date-badge">Minggu, 20 Desember 2026</p><p class="lead tiny" id="heroGreeting">Dengan rasa syukur, kami mengundang Anda hadir di hari istimewa kami.</p><div class="botanical-line">✧ ❦ ✧</div></div>
+    </header>
+
+    <section class="invite-section couple-section" id="mempelai">
+      <div class="section-flower">❀</div>
+      <p class="eyebrow">Bismillahirrahmanirrahim</p>
+      <h2>Dua Hati, Satu Janji</h2>
+      <p class="lead" id="greeting"></p>
+      <div class="couple-name-block"><div class="person-name" id="brideName">Nadia Putri</div><div class="parents" id="brideParents"></div><div class="ampersand">&amp;</div><div class="person-name" id="groomName">Arga Pratama</div><div class="parents" id="groomParents"></div></div>
+      <div class="quote-frame"><div class="quote-mark">“</div><p id="quoteText"></p><span id="quoteSource"></span></div>
+    </section>
+
+    <section class="invite-section event-section" id="acara">
+      <div class="section-flower">✧</div><p class="eyebrow">Save The Date</p><h2>Hari Bahagia Kami</h2>
+      <p class="lead">Hitung mundur menuju hari istimewa</p>
+      <div class="countdown" aria-label="Hitung mundur tanggal pernikahan"><div><strong id="days">00</strong><small>Hari</small></div><div><strong id="hours">00</strong><small>Jam</small></div><div><strong id="minutes">00</strong><small>Menit</small></div><div><strong id="seconds">00</strong><small>Detik</small></div></div>
+      <div class="event-card"><div class="event-icon">❦</div><h3>Akad Nikah</h3><p class="event-day" id="akadDay"></p><p id="akadHours"></p></div>
+      <div class="event-card"><div class="event-icon">♡</div><h3>Resepsi Pernikahan</h3><p class="event-day" id="receptionDay"></p><p id="receptionHours"></p></div>
+      <a id="calendarLink" class="btn outline" target="_blank" rel="noopener noreferrer" href="#acara">+ &nbsp; Simpan ke Google Calendar</a>
+    </section>
+
+    <section class="invite-section venue-section" id="lokasi"><div class="section-flower">⌖</div><p class="eyebrow">Wedding Venue</p><h2>Lokasi Acara</h2><div class="venue-box"><div class="venue-icon">⌂</div><h3 id="venueName"></h3><p id="venueAddress" class="lead"></p><a id="mapsLink" class="btn primary" href="#lokasi" target="_blank" rel="noopener noreferrer">↗ &nbsp; Petunjuk Arah</a></div></section>
+
+    <section class="invite-section story-section" id="kisah" hidden><div class="section-flower">✦</div><p class="eyebrow">Our Story</p><h2 id="storyTitle"></h2><p id="storyText" class="lead prewrap"></p></section>
+    <section class="invite-section gallery-section" id="galeri" hidden><div class="section-flower">❀</div><p class="eyebrow">Our Moments</p><h2>Galeri Kami</h2><div id="galleryGrid" class="gallery-grid"></div></section>
+
+    <section class="invite-section rsvp-section" id="rsvp"><div class="section-flower">✉</div><p class="eyebrow">Wedding RSVP</p><h2>Konfirmasi Kehadiran</h2><p class="lead">Kami menantikan kabar dari Anda.</p><form id="rsvpForm" class="invite-form"><label>Nama Tamu<input id="rsvpName" maxlength="80" required placeholder="Tuliskan nama Anda"></label><label>Konfirmasi Kehadiran<select id="attendance" required><option value="Hadir">Ya, saya akan hadir</option><option value="Tidak hadir">Maaf, belum bisa hadir</option><option value="Masih ragu">Masih belum pasti</option></select></label><label>Jumlah Tamu<select id="guests" required><option value="1">1 orang</option><option value="2">2 orang</option><option value="3">3 orang</option><option value="4">4 orang</option><option value="5">5 orang</option><option value="6">6 orang</option><option value="7">7 orang</option><option value="8">8 orang</option><option value="9">9 orang</option><option value="10">10 orang</option></select></label><button type="submit" class="btn primary full">Kirim Konfirmasi</button><p class="form-status" id="rsvpStatus" role="status"></p></form></section>
+
+    <section class="invite-section wishes-section" id="ucapan"><div class="section-flower">♡</div><p class="eyebrow">Love &amp; Wishes</p><h2>Ucapan &amp; Doa</h2><p class="lead">Tuliskan doa terbaik untuk kami.</p><form class="invite-form" id="wishForm"><label>Nama<input id="wishName" required maxlength="65" placeholder="Nama Anda"></label><label>Ucapan<textarea id="wishMessage" maxlength="500" minlength="3" rows="4" required placeholder="Doa dan pesan yang ingin disampaikan..."></textarea></label><button class="btn primary full" type="submit">♡ &nbsp; Kirim Ucapan</button><p class="form-status" id="wishStatus" role="status"></p></form><div class="wishes-list" id="wishesList"><p class="lead">Memuat ucapan...</p></div></section>
+
+    <section class="invite-section gift-section" id="hadiah" hidden><div class="section-flower">✧</div><p class="eyebrow">Wedding Gift</p><h2>Tanda Kasih</h2><p class="lead">Doa restu Anda adalah hadiah yang paling berharga. Jika ingin mengirim tanda kasih, berikut informasinya.</p><div id="bankGift" class="gift-card" hidden><p class="eyebrow">Transfer Bank</p><h3 id="giftBank"></h3><p class="account-number" id="giftAccount"></p><p id="giftName"></p><button type="button" class="btn outline" id="copyBank">Salin Nomor Rekening</button></div><div id="addressGift" class="gift-card" hidden><p class="eyebrow">Kirim Hadiah</p><p class="lead prewrap" id="giftAddress"></p></div></section>
+
+    <footer class="invite-footer"><p class="eyebrow">Terima Kasih</p><h2 class="script-names" id="footerNames"></h2><p>Kehadiran dan doa restu Anda sungguh berarti bagi kami.</p><button type="button" id="shareInvitation" class="btn inverse">↗ &nbsp; Bagikan Undangan</button><p class="footer-note">Made with ♡ • Kartun Wedding Invitation</p></footer>
+    <nav class="bottom-nav" aria-label="Navigasi undangan"><a href="#beranda"><span>⌂</span>Beranda</a><a href="#acara"><span>♡</span>Acara</a><a href="#lokasi"><span>⌖</span>Lokasi</a><a href="#rsvp"><span>✓</span>RSVP</a><a href="#ucapan"><span>✉</span>Ucapan</a></nav>
+  </main>
+  <button id="musicButton" type="button" class="music-control" aria-label="Putar atau jeda musik" title="Musik latar" hidden>♫</button>
+  <audio id="musicAudio" loop preload="none"></audio>
+</body>
+</html>

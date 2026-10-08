@@ -1,0 +1,21 @@
+UNDANGAN DIGITAL KARTUN - KHUSUS HOSTING GRATIS
+================================================
+
+BACA README.md untuk petunjuk lengkap.
+
+RINGKAS:
+1. Buat project gratis di supabase.com/dashboard
+2. Jalankan seluruh isi database/init.sql di SQL Editor Supabase
+3. Buat Storage bucket 'undangan-media' dengan opsi Public
+4. Salin Project URL dan Secret Key (sb_secret_...) dari Supabase
+5. Buat repository GitHub. Upload seluruh ISI folder ZIP ini (bukan zip-nya)
+6. Render.com -> New -> Blueprint -> hubungkan repository GitHub
+7. Isi ADMIN_PASSWORD, SUPABASE_URL, SUPABASE_SECRET_KEY (private)
+8. Deploy. Buka link .onrender.com/admin, lalu isi dan terbitkan undangan
+
+Kamu perlu akun GitHub, Supabase, dan Render milikmu sendiri.
+Secret Key jangan diposting ke GitHub atau dikirim ke tamu.
+
+LINK: https://supabase.com/dashboard
+      https://github.com/new
+      https://dashboard.render.com/
